@@ -1,6 +1,7 @@
 package wdsr.exercise1.logic;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,4 +61,50 @@ public class CalculatorTest {
 		// then
 		// empty
 	}		
+	
+    @Test
+    public void testMax_shouldReturnTheOnlyValue() {
+        // given
+        int[] values = {55};
+        
+        // when
+        int max = calculator.max(values);
+        
+        // then
+        assertThat(values[0], is(max));
+    }
+    
+    @Test
+    public void testMax_shouldReturnTheBiggestOfAllValues() {
+        // given
+        int[] values = { 20, 9, 55};
+        
+        // when
+        int max = calculator.max(values);
+        
+        // then
+        assertThat(55, is(max));
+    }
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testMax_shouldRiseAnExceptionForNullArgument(){
+		// given
+		int[] values = null;
+		// when
+		calculator.max(values);
+		
+		// then
+		// empty
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testMax_shouldRiseAnExceptionForEmptyArgument(){
+		// given
+		int[] values = {};
+		// when
+		calculator.max(values);
+		
+		// then
+		// empty
+	}
 }
